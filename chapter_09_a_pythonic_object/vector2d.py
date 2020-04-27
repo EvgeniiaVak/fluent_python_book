@@ -5,6 +5,12 @@ import math
 class Vector2d:
     typecode = 'd'
 
+    @classmethod
+    def frombytes(cls, octets):
+        typecode = chr(octets[0])
+        memv = memoryview(octets[1:]).cast(typecode)
+        return cls(*memv)
+
     def __init__(self, x, y):
         self.x = float(x)
         self.y = float(y)
