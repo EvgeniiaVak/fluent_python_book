@@ -38,3 +38,19 @@ class Vector2d:
 
     def __bool__(self):
         return bool(abs(self))
+
+    def __format__(self, format_spec):
+        """
+        :param format_spec: if ends with `p` returns formatted polar coordinates
+        :return:
+        """
+        if format_spec.endswith('p'):
+            format_spec = format_spec[:-1]
+            r = abs(self)
+            theta = self.angle()
+            return f'({r:{format_spec}}, {theta:{format_spec}})'
+        else:
+            return f'({self.x:{format_spec}}, {self.y:{format_spec}})'
+
+    def angle(self):
+        return math.atan2(self.y, self.x)
