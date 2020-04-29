@@ -12,8 +12,19 @@ class Vector2d:
         return cls(*memv)
 
     def __init__(self, x, y):
-        self.x = float(x)
-        self.y = float(y)
+        self.__x = float(x)
+        self.__y = float(y)
+
+    @property
+    def x(self):
+        return self.__x
+
+    @property
+    def y(self):
+        return self.__y
+
+    def __hash__(self):
+        return hash(self.x) ^ hash(self.y)
 
     # this is what makes unpacking to work
     def __iter__(self):

@@ -5,6 +5,15 @@ from chapter_09_a_pythonic_object.vector2d import Vector2d
 
 class Vector2dTestCase(unittest.TestCase):
 
+    def test_hashable(self):
+        v = Vector2d(2, 1)
+        self.assertEqual(hash(v), 3)
+
+    def test_immutability(self):
+        v = Vector2d(1, 1)
+        with self.assertRaises(AttributeError):
+            v.x = 3
+
     def test_format_polar(self):
         v = Vector2d(-3, 4)
         self.assertEqual(f'{v:.2fp}', '(5.00, 2.21)')
