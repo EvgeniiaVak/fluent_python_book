@@ -5,6 +5,11 @@ from chapter_09_a_pythonic_object.vector2d import Vector2d
 
 class Vector2dTestCase(unittest.TestCase):
 
+    def test_private_attributes(self):
+        v = Vector2d(5, 9)
+        v._Vector2d__x = 4
+        self.assertEqual(v.x, 4)
+
     def test_hashable(self):
         v = Vector2d(2, 1)
         self.assertEqual(hash(v), 3)
